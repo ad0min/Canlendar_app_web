@@ -21,7 +21,7 @@ namespace app
         }
         public DataSet loadData()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             var conn = new SqlConnection(connectionString);
             conn.Open();
 
@@ -77,7 +77,6 @@ namespace app
             if (i == false)
             {
                 DataRow newRow = Todo.NewRow();
-                newRow["ID"] = 1;
                 newRow["Todo"] = text;
                 newRow["Date"] = day;
                 newRow["accID"] = 6;
@@ -102,7 +101,7 @@ namespace app
         }
         public static string getConnString()
         {
-            return ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
     }
 }

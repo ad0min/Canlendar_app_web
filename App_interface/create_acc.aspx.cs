@@ -24,7 +24,7 @@ namespace app
                 try
                 {
                     conn.Open();
-                    string checkuser = "select count(*) from Account where User= '" + TextboxUser.Text + "'";
+                    string checkuser = "select count(*) from Account where Users='" + TextboxUser.Text + "'";
                     SqlCommand cmd = new SqlCommand(checkuser, conn);
                     int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                     if (temp == 1)
@@ -52,21 +52,22 @@ namespace app
             //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["loginConnectionString"].ConnectionString);
             try
             {
-
                 conn.Open();
-                string checkuser = "select count(*) from Account where User= '" + TextboxUser.Text + "'";
+
+                string checkuser = "SELECT count(*) FROM Account WHERE Users='" + TextboxUser.Text + "'";
+                //string user = "select User from Account ";
                 SqlCommand cmd = new SqlCommand(checkuser, conn);
                 int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 if (temp != 1)
                 {
-                    cmd = new SqlCommand("insert into Account(User, Mail, Pass) values(@user,@email,@pass)", conn);
+                    cmd = new SqlCommand("INSERT INTO Account (Users, Pass, Mail) values(@user,@pass,@email)", conn);
                     cmd.Parameters.AddWithValue("@user", TextboxUser.Text);
                     string pass = getmd5(TextboxPass.Text);
-                    cmd.Parameters.AddWithValue("@email", TextboxMail.Text);
                     cmd.Parameters.AddWithValue("@pass", pass);
+                    cmd.Parameters.AddWithValue("@email", TextboxMail.Text);
                     cmd.ExecuteNonQuery();
-                    Response.Redirect("Maganer.aspx");
-                    //Response.Write("Registation is successfull!");
+                    Response.Redirect("Manager.aspx");
+                    Response.Write("Registation is successfull!");
                 }
                 else
                 {

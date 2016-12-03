@@ -18,8 +18,7 @@ namespace app
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            User = (string)(Session["Username"]);
+            if (IsPostBack) ;           
         }
 
 
@@ -115,8 +114,7 @@ namespace app
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             day = Calendar1.SelectedDate;
-            if(TextBox1.Text!="")
-                TextBox1.Text = db.getTodo(day);
+            TextBox1.Text = db.getTodo(day);
 
         }
 

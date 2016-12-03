@@ -31,14 +31,14 @@ namespace app
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(/*"Select * from Account", conn*/"select count(*) from Account where User='" + TextboxUser.Text + "'",conn);
+                    SqlCommand cmd = new SqlCommand(/*"Select * from Account", conn*/"select count(*) from Account where Users='" + TextboxUser.Text + "'",conn);
                    // SqlDataReader rdr = cmd.ExecuteReader();
                     //cmd.CommandText = "select count(*) from Account where User='"+TextboxUser+"'";
                     
                     int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                     if (temp == 1)
                     {
-                        var passQuery = new SqlCommand("select Pass from Account where User= '" + TextboxUser.Text + "'", conn);
+                        var passQuery = new SqlCommand("select Pass from Account where Users= '" + TextboxUser.Text + "'", conn);
                         string pass = passQuery.ExecuteScalar().ToString().Replace(" "," ");
                         if (pass == getmd5(TextboxPass.Text))
                         {
