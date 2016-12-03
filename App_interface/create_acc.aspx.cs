@@ -27,11 +27,11 @@ namespace app
                     string checkuser = "select count(*) from Account where Users='" + TextboxUser.Text + "'";
                     SqlCommand cmd = new SqlCommand(checkuser, conn);
                     int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    if (temp == 1)
-                    {
-                        Response.Write("Username is exits");
-                        this.Page_Load(sender, e);
-                    }
+                    //if (temp == 1)
+                    //{
+                    //    Label1.Text = "Wrong password !";
+                    //    this.Page_Load(sender, e);
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +71,7 @@ namespace app
                 }
                 else
                 {
-                    Response.Write("Username is existed.");
+                    Label1.Text = "Account is existed !";
                 }
             }
             catch (Exception ex)

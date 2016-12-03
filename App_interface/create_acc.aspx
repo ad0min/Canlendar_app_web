@@ -84,6 +84,8 @@
         <asp:TextBox ID="TextboxUser" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextboxUser" ErrorMessage="User name is required" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
+        <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
+        <br />
         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextboxUser" ErrorMessage="Username is existed" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         E-mail :

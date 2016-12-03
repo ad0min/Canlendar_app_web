@@ -15,10 +15,13 @@ namespace app
         DateTime day;
         string User;
         database db = new database();
+        int id;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) ;           
+            User = (string)(Session["Username"]);
+
+            TextBox1.Text = db.getTodo(day);
         }
 
 
@@ -114,7 +117,8 @@ namespace app
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             day = Calendar1.SelectedDate;
-            TextBox1.Text = db.getTodo(day);
+            //if(TextBox1.Text!="")
+                TextBox1.Text = db.getTodo(day);
 
         }
 
