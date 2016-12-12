@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Configuration;
-
+using System.Windows;
 namespace app
 {
     public partial class Login : System.Web.UI.Page
@@ -21,7 +21,6 @@ namespace app
         {
 
         }
-
         protected void btnsubmit_Click(object sender, EventArgs e)
         {
 
@@ -31,45 +30,29 @@ namespace app
                 try
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(/*"Select * from Account", conn*/"select count(*) from Account where Users='" + TextboxUser.Text + "'",conn);
-                   // SqlDataReader rdr = cmd.ExecuteReader();
-                    //cmd.CommandText = "select count(*) from Account where User='"+TextboxUser+"'";
-                    
+                    SqlCommand cmd = new SqlCommand("select count(*) from Account where Users='" + TextboxUser.Text + "'",conn);
+                   
                     int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                     if (temp == 1)
                     {
                         var passQuery = new SqlCommand("select Pass from Account where Users= '" + TextboxUser.Text + "'", conn);
-                        string pass = passQuery.ExecuteScalar().ToString().Replace(" "," ");
+                        var IdQuery = new SqlCommand("select Id from Account where Users= '" + TextboxUser.Text + "'", conn);
+                        string pass = passQuery.ExecuteScalar().ToString();
+                        string Id = IdQuery.ExecuteScalar().ToString();
+                        {
                         if (pass == getmd5(TextboxPass.Text))
                         {
                             Session["Username"] = TextboxUser.Text;
+                            Session["Id"] = Id;
                             Response.Write("Login successful.");
-
                             Response.Redirect("Home.aspx");
                         }
                         else
-                        {
-                            Response.Write("Login fail.");
+                            Response.Write("Your password is wrong.");
                         }
                     }
                     else
-                        Response.Write("Invalid login attempt.");
-                    
-                    //while (rdr.Read())
-                    //{
-                    //    string user = (string)rdr["User"];
-                    //    string pass = (string)rdr["Pass"];
-                        
-                    //    if (user == TextboxUser.Text && temp==1)
-                    //    {
-                    //        if (pass == getmd5(TextboxPass.Text))
-                    //            //   home.aspx(int IDacc);
-                    //            Response.Write("You login successful");
-                    //        Response.Write("Password is invalid");
-                    //    }
-                    //    else
-                    //        Response.Write("Invalid login attempt.");
-                    //}
+                        Response.Write("Your account is not existed.");
                 }
 
 
@@ -84,6 +67,7 @@ namespace app
                 }
             }
         }
+
         public string getmd5(string str)
         {
             string str_md5 = "";

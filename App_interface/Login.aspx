@@ -95,7 +95,7 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextboxPass" ErrorMessage="Password is required" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
         <asp:Button ID="btnsubmit" runat="server" Text="LOGIN" OnClick="btnsubmit_Click" />
-        <a href="../create_acc.aspx" class="one">Create new User </a>
+        <a href="create_acc.aspx" class="one">Create new User </a>
     </div>
     </form>
 </body>

@@ -11,15 +11,15 @@
     <div>
     
     </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="150px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="370px">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Width="299px">
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                <asp:BoundField DataField="User" HeaderText="User" SortExpression="User" />
+                <asp:BoundField DataField="Users" HeaderText="Users" SortExpression="Users" />
                 <asp:BoundField DataField="Pass" HeaderText="Pass" SortExpression="Pass" />
                 <asp:BoundField DataField="Mail" HeaderText="Mail" SortExpression="Mail" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DataConnectionString %>" SelectCommand="SELECT * FROM [Account]" OnSelecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Account]" OnSelecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
     </form>
 </body>
 </html>

@@ -18,27 +18,24 @@ namespace app
             if (IsPostBack)
             {
                 string connectionString = database.getConnString();
-                SqlConnection conn = new SqlConnection(connectionString);
-                //(@"Data Source=DESKTOP-DKTHS8S\SQLEXPRESS;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
-
+                SqlConnection conn = new SqlConnection(connectionString);             
                 try
-                {
+               {
                     conn.Open();
-                    string checkuser = "select count(*) from Account where Users='" + TextboxUser.Text + "'";
-                    SqlCommand cmd = new SqlCommand(checkuser, conn);
-                    int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                    //string checkuser = "select count(*) from Account where Users='" + TextboxUser.Text + "'";
+                    //SqlCommand cmd = new SqlCommand(checkuser, conn);
+                    //int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                     //if (temp == 1)
                     //{
-                    //    Label1.Text = "Wrong password !";
-                    //    this.Page_Load(sender, e);
+                     //   this.Page_Load(sender, e);
                     //}
                 }
                 catch (Exception ex)
-                {
+               {
                     Response.Write("Error:" + ex.ToString());
                 }
                 finally
-                {
+               {
                     conn.Close();
                     conn.Dispose();
                 }
@@ -49,13 +46,13 @@ namespace app
         {
             string connectionString = database.getConnString();
             SqlConnection conn = new SqlConnection(connectionString);
-            //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["loginConnectionString"].ConnectionString);
+            
             try
             {
                 conn.Open();
 
-                string checkuser = "SELECT count(*) FROM Account WHERE Users='" + TextboxUser.Text + "'";
-                //string user = "select User from Account ";
+                string checkuser = "select count(*) from Account where Users='" + TextboxUser.Text + "'";
+                
                 SqlCommand cmd = new SqlCommand(checkuser, conn);
                 int temp = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 if (temp != 1)
@@ -66,12 +63,12 @@ namespace app
                     cmd.Parameters.AddWithValue("@pass", pass);
                     cmd.Parameters.AddWithValue("@email", TextboxMail.Text);
                     cmd.ExecuteNonQuery();
-                    Response.Redirect("Manager.aspx");
+                    Response.Redirect("Maganer.aspx");
                     Response.Write("Registation is successfull!");
                 }
                 else
                 {
-                    Label1.Text = "Account is existed !";
+                    Label1.Text="Fail to create account.";
                 }
             }
             catch (Exception ex)

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="app.Home" Trace ="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="app.Home" Trace="false" %>
 
 <!DOCTYPE html>
 
@@ -95,52 +95,43 @@
     </style>
 </head>
 <body>
-
     <form id="form1" runat="server">
         <div class="one">
             <div class="two">
                 CALENDAR
             </div>
             <div class="three">
-                Thanhdat | 
-            <a class="one" href="login.aspx">Sign out</a>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                <a class="one" href="login.aspx">| Sign out</a>
             </div>
         </div>
-        <div style="width: 96%; height: 102%; position: absolute; top: 76px; left: 22px;">
+        <div style="width: 96%; height: 90%; position: absolute; top: 76px; left: 22px;">
             <div style="width: 50%; height: 100%; float: left;">
                 <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <div style="width: 100%; height: 40%;">
-                    <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#45A049" BorderWidth="2px" Font-Names="Verdana" Font-Size="9pt" ForeColor="#45A049" Height="95%" NextPrevFormat="FullMonth" Width="95%" BorderStyle="Solid" ShowNextPrevMonth="False" OnSelectionChanged="Calendar1_SelectionChanged">
+                    <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#45A049" BorderWidth="2px" Font-Names="Verdana" Font-Size="9pt" ForeColor="#45A049" Height="95%" NextPrevFormat="FullMonth" Width="95%" BorderStyle="Solid" ShowNextPrevMonth="False" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender">
                         <DayHeaderStyle Font-Bold="True" Font-Size="8pt" HorizontalAlign="Center" VerticalAlign="Top" Wrap="True" />
                         <DayStyle BorderStyle="None" Wrap="True" />
                         <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                         <OtherMonthDayStyle ForeColor="#999999" />
-                        <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                        <SelectedDayStyle BackColor="White" ForeColor="Black" />
                         <TitleStyle BackColor="White" BorderColor="#45A049" BorderWidth="1px" Font-Bold="True" Font-Size="12pt" ForeColor="#45A049" BorderStyle="Solid" />
-                        <TodayDayStyle BackColor="#CCCCCC" />
+                        <TodayDayStyle BackColor="Silver" />
                         <WeekendDayStyle ForeColor="#FF3300" />
                     </asp:Calendar>
                 </div>
-                <div style="height: 15%">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                <div style="height: 7%">
                 </div>
-                <div style="width: 100%; height: 0%;">
-                    <asp:Button ID="Jan" runat="server" Text="Jan" OnClick="Jan_Click" Width="7.5%" />
+                <div style="width: 100%; height: 0%; text-align:center">
+                    <asp:Button ID="Jan" runat="server" Text="Jan" OnClick="Button1_Click" Width="7.5%" />
                     <asp:Button ID="Fer" runat="server" Text="Feb" OnClick="Button2_Click" Width="7.5%" />
                     <asp:Button ID="Mar" runat="server" Text="Mar" OnClick="Button3_Click" Width="7.5%" />
-                    <asp:Button ID="April" runat="server" Text="Apr" OnClick="Button4_Click" Width="7.5%" />
+                    <asp:Button ID="Apr" runat="server" Text="Apr" OnClick="Button4_Click" Width="7.5%" />
                     <asp:Button ID="May" runat="server" Text="May" OnClick="Button5_Click" Width="7.5%" />
                     <asp:Button ID="Jun" runat="server" Text="Jun" OnClick="Button6_Click" Width="7.5%" />
                     <asp:Button ID="Jul" runat="server" Text="Jul" OnClick="Button7_Click" Width="7.5%" />
@@ -153,17 +144,48 @@
             </div>
             <div style="width: 50%; height: 100%; float: right; position: absolute; left: 50%; top: 0px;">
                 <div style="width: 90%; float: right">
-                    <p style="font-family: 'Comic Sans MS'; font-size: 200%; color: #45a049">
-                        TO DO LIST
-                    </p>
+                    <div style="height: 20%">
+                        <div style="float: left">
+                            <p style="font-family: 'Comic Sans MS'; font-size: 200%; color: #45a049">
+                                TO DO LIST
+                            </p>
+                        </div>
+                        <div style="float: right; position: absolute; left: 70%; top: 5%;">
+
+                            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                <asp:ListItem>2010</asp:ListItem>
+                                <asp:ListItem>2011</asp:ListItem>
+                                <asp:ListItem>2012</asp:ListItem>
+                                <asp:ListItem>2013</asp:ListItem>
+                                <asp:ListItem>2014</asp:ListItem>
+                                <asp:ListItem>2015</asp:ListItem>
+                                <asp:ListItem>2016</asp:ListItem>
+                                <asp:ListItem>2017</asp:ListItem>
+                                <asp:ListItem>2018</asp:ListItem>
+                                <asp:ListItem>2019</asp:ListItem>
+                                <asp:ListItem>2020</asp:ListItem>
+                                <asp:ListItem>2021</asp:ListItem>
+                                <asp:ListItem>2022</asp:ListItem>
+                                <asp:ListItem>2023</asp:ListItem>
+                                <asp:ListItem>2024</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
                     <p style="height: 388px">
-                        <asp:TextBox ID="TextBox1" runat="server" Height="80%" Width="85%" BorderColor="#45A049" BorderStyle="Dotted" BorderWidth="1px" Font-Size="150%" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" Height="80%" Width="85%" BorderColor="#45A049" BorderStyle="Dotted" BorderWidth="1px" Font-Size="150%" OnTextChanged="TextBox1_TextChanged" TextMode="MultiLine"></asp:TextBox>
                     </p>
-
-
                 </div>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+                <br />
+                <br />
+                <br />
+                <div style="width: 50%; height: 10%; position: relative; left: 28%;">
+                    <asp:Button ID="Submit" runat="server" OnClick="Submit_Click" Text="Submit" Width="100%" />
+                </div>
             </div>
+            <div style="background-color: #45A049; color: white; height: 5%; top:95%; width:100%; position:fixed;text-align:center">
+                Copyright by:3D team
+            </div>
+        </div>
     </form>
 </body>
 </html>
