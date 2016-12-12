@@ -8,7 +8,7 @@ using System.Configuration;
 
 namespace app
 {
-    public class database
+    public class database:Login
     {
 
         public DataSet dataSet;
@@ -17,8 +17,9 @@ namespace app
 
         public database()
         {
-            loadData();
+            loadData();            
         }
+
         public DataSet loadData()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -50,7 +51,7 @@ namespace app
         }
         public string getTodo(DateTime day)
         {
-            DataRow[] groupRows = Account.Select("ID='6'");
+            DataRow[] groupRows = Account.Select("ID='" + Session["Id"] + "'");
             DataRow[] memeberTodo = groupRows[0].GetChildRows("accID");
             foreach (var row in memeberTodo)
             {
@@ -63,7 +64,7 @@ namespace app
         }
         public void setTodo(DateTime day, string text)
         {
-            DataRow[] groupRows = Account.Select("ID='6'");
+            DataRow[] groupRows = Account.Select("ID='" + Session["Id"] + "'");
             DataRow[] memeberTodo = groupRows[0].GetChildRows("accID");
             bool i = false;
             foreach (var row in memeberTodo)    
@@ -79,13 +80,13 @@ namespace app
                 DataRow newRow = Todo.NewRow();
                 newRow["Todo"] = text;
                 newRow["Date"] = day;
-                newRow["accID"] = 6;
+                newRow["accID"] = Session["Id"];
                 Todo.Rows.Add(newRow);
                 
 
             }
 
-            groupRows = Todo.Select("accID='6'");
+            groupRows = Todo.Select("accID='" + Session["Id"] + "'");
         }
 
         public void storeData()
@@ -103,5 +104,24 @@ namespace app
         {
             return ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
+        public void delete_emty()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            var conn = new SqlConnection(connectionString);
+            conn.Open();
+            string check = "Delete from Todo where Todo=''";
+            SqlCommand cmd = new SqlCommand(check, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            //string connectionString = database.getConnString();
+            //using (var conn = new SqlConnection(connectionString))
+            //{
+            //    var dataAdapter = new SqlDataAdapter("Delete from Todo where Todo=''", conn);
+            //    var builer = new SqlCommandBuilder(dataAdapter);
+            //    //dataAdapter .UpdateCommand= new SqlCommand("update Todo set ")
+            //    dataAdapter.Update(Todo);
+
+            //}
+        }       
     }
 }
